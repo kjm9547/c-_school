@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 	string s;
-	cout << "7+23+5+100+25¿Í °°ÀÌ µ¡¼À ¹®ÀÚ¿­À» ÀÔ·ÂÇÏ¼¼¿ä" << endl;
+	cout << "7+23+5+100+25ì™€ ê°™ì´ ë§ì…ˆ ë¬¸ìžì—´ì„ ìž…ë ¥í•˜ì„¸ìš”" << endl;
 	getline(cin, s, '\n');
 	int sum = 0;
 	int startIndex = 0;
