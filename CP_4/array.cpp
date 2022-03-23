@@ -22,14 +22,14 @@ int main() {
 
 
 	for (int i = 0; i < 3; i++) {
-		cout << "Circle" << i << "ÀÇ ¸éÀûÀº" << circleArray[i].getArea() << endl;
+		cout << "Circle" << i << "Å”Ã‡ Â¸Ã©Å”Å±Å”ÅŸ" << circleArray[i].getArea() << endl;
 	}
 
 	Circle* p;
 	p = circleArray;
 
 	for (int i = 0; i < 3; i++) {
-		cout << "circle" << i << "ÀÇ ¸éÀûÀº" << p->getArea() << endl;
+		cout << "circle" << i << "Å”Ã‡ Â¸Ã©Å”Å±Å”ÅŸ" << p->getArea() << endl;
 		p++;
 	}
 
