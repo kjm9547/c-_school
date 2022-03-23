@@ -4,26 +4,26 @@ using namespace std;
 
 
 int main() {
-	cout << "ÀÔ·ÂÇÒ Á¤¼öÀÇ °³¼ö´Â?";
+	cout << "ìž…ë ¥í•  ì •ìˆ˜ì˜ ê°œìˆ˜ëŠ”?";
 	int n;
 	cin >> n;
 	if (n <= 0) return 0;
 	int* p = new int[n];
 
 	if (!p) {
-		cout << "¸Þ¸ð¸®¸¦ ÇÒ´ç ÇÒ ¼ö ¾ø½À´Ï´Ù.";
+		cout << "ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.";
 		return 0;
 	}
 
 	for (int i = 0; i < n; i++) {
-		cout << i + 1 << "ÀÇ  ¼ö";
+		cout << i + 1 << "ì˜  ìˆ˜";
 		cin >> p[i];
 	}
 
 	int sum = 0;
 	for (int i = 0; i < n; i++)
 		sum += p[i];
-	cout << "Æò±Õ" << sum / n << endl;
+	cout << "í‰ê· " << sum / n << endl;
 
 	delete[] p;
 }
