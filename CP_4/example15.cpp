@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 	string s;
-	cout << "¿©·¯ ÁÙÀÇ ¹®ÀÚ¿­À» ÀÔ·ÂÇÏ¼¼¿ä" << endl;
+	cout << "ì—¬ëŸ¬ ì¤„ì˜ ë¬¸ìžì—´ì„ ìž…ë ¥í•˜ì„¸ìš”" << endl;
 	getline(cin, s, '&');
 	cin.ignore();
 
