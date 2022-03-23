@@ -1,4 +1,4 @@
-//¹®ÀÚ¿­À» ÀÔ·Â ¹Ş°í È¸Àü½ÃÅ°±â
+//ë¬¸ìì—´ì„ ì…ë ¥ ë°›ê³  íšŒì „ì‹œí‚¤ê¸°
 #include <iostream>
 #include <string>
 
@@ -7,7 +7,7 @@ using namespace std;
 int main() {
 	string s;
 
-	cout << "¾Æ·¡¿¡ ¹®ÀÚ¿­À» ÀÔ·ÂÇÏ¼¼¿ä" << endl;
+	cout << "ì•„ë˜ì— ë¬¸ìì—´ì„ ì…ë ¥í•˜ì„¸ìš”" << endl;
 
 	getline(cin, s, '\n');
 	int len = s.length();
