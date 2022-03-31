@@ -11,18 +11,20 @@ public:
 	string setName(string name) { return this->name = name; }
 	string getName() { return name; };
 	bool ran_num() {
-		int sum =0;
+
 		for (int i = 0; i < 3; i++) {
-			ran[i] = rand() % (2 - 0 + 1) + 0;
-			sum += ran[i];
+			ran[i] = rand() %3;
+			
 			cout << ran[i] << '\t';
-			if (sum % 3 == 0) {
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			
+		}
+
+		if (ran[0] == ran[1] && ran[1] == ran[2]) {
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
@@ -51,18 +53,18 @@ public:
 		int i = 0;
 		while (true)
 		{
-			
+
 			getline(cin, start, '\n');
-			cout << p[i % 2].getName() << ":<Enter>" << endl; 
-			
+			cout << p[i % 2].getName() << ":<Enter>" << endl;
+
 			if (p[i % 2].ran_num() == true)
 			{
-				cout << p[i % 2].ran_num() <<'\t' << p[i % 2].getName() << "님 승리";
+				cout << '\t' << p[i % 2].getName() << "님 승리";
 				break;
 			}
 			else
 			{
-				cout << p[i % 2].ran_num() << "\t 아쉽군요";
+				cout << "\t 아쉽군요";
 			}
 			i++;
 		}
@@ -70,7 +72,7 @@ public:
 
 	};
 };
-	
+
 
 int main() {
 	GamblingGame g;
