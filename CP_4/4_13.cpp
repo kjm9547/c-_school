@@ -1,57 +1,52 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
 class Histogram {
 	string text;
-	int histo[26];
 public:
-	Histogram(string text) {
-		this->text = text;
-	};
-	string put(string text) {
-		return this->text.append(text);
-	};
-	void putc(char word) {
-		text +=word;
-	};
+	Histogram(string word) {
+		text = word;
+	}
+	string put(string input) {
+		return text.append(input);
+	}
+	string putc(char word) {
+		return text += word;
+	}
+	
 	void print() {
 		cout << text << endl;
+		int len = text.length();
 		int cnt = 0;
-		int alp_cnt = 0;
-		string stack_star = "";
-		for (int i = 0; i < 26; i++) {
-			histo[i] = 0;
-		}
-		for (int i = 0; i < text.length(); i++) {
-			if (isalpha(text[i])) {
-				char c = tolower(text[i]);
-				histo[c - 'a']++;
+		for (int i = 0; i < len; i++) {
+			if (isalpha(tolower(text[i]))==2) {
+				cnt++;
 				
 			}
-			
 		}
-	
-		for (int i = 0; i < 26; i++) {
-			cnt += histo[i];
+		cout << cnt << endl;
+		int starstack[26];
+
+		for (char i = 'a'; i <= 'z'; i++) {
+			int num_cnt = 0;
+			string star_cnt = "";
+			for(int j=0;j<=len; j++){
+				
+				if (tolower(text[j]) == i) {
+					num_cnt++;
+					star_cnt+= "*";
+				}
 			}
-		cout << "소문자의 수" << cnt << endl;
-
-		for (int i = 0; i < 26; i++) {
-
-			cout << char('a' + i) << "(" << histo[i] << ")    :";
-			for (int j = 0; j < histo[i]; j++) {
-				cout << '*';
-			};
-			cout << endl;
+			starstack[i - 97] = num_cnt;
+			cout << i << starstack[i - 97] <<"   :" <<star_cnt<< endl;
 		}
-	};
+	}
 };
 int main() {
-	Histogram elvisHisto("Wise men say, only fools rush in But I can't help, ");//생성자
-	elvisHisto.put("falling in love with you");
-	elvisHisto.putc('-');
-	elvisHisto.put("Elvis Presley");
-	elvisHisto.print();
+	Histogram elvishisto("Wise men say, only fools rush in But I can't help, ");
+	elvishisto.put("falling in love with you");
+	elvishisto.putc('-');
+	elvishisto.put("Elvis Presley");
+	elvishisto.print();
 }
