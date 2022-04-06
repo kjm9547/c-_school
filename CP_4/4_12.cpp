@@ -1,75 +1,57 @@
-#include <iostream>
-#include <string>
+#include<iostream>
 
 using namespace std;
 
 class Circle {
-	int radius; //¹ÝÁö¸§ÀÇ °ª
+	int radius;
 	string name;
 public:
-	void setCircle(string name, int radius) {
-		this->name = name;
-		this->radius = radius;
-	};
-	double getArea() { return radius * radius * 3.14; };
+	void setCircle(string name, int radius) { this->name = name; this->radius = radius; };
+	double getArea() { return 3.14 * radius * radius; };
 	string getName() { return name; };
 };
-
 class CircleManager {
 	Circle* p;
 	int size;
 public:
 	CircleManager(int size) {
-		p = new Circle[size];
+		string name;
+		int radius;
 		this->size = size;
-	};
-	void run() {
-		string circle_name;
-		int circle_radius;
+		p = new Circle[size];
+		
 		for (int i = 0; i < size; i++) {
-			cin >> circle_name >> circle_radius;
-			p[i].setCircle(circle_name, circle_radius);
+			cin >> name >> radius;
+			p[i].setCircle(name, radius);
 		}
-	}
-	~CircleManager() {
-		delete[]p;
 	};
-
-	void searchByName() {
+	~CircleManager() { delete[] p; cout << "ì†Œë©¸ìž ì§„í–‰" << endl; };
+	void searchByName() { 
+		cout << "ê²€ìƒ‰í•˜ê³ ìž í•˜ëŠ” ì´ë¦„";
 		string s_name;
-		cout << "°Ë»öÇÏ°íÀÚ ÇÏ´Â ÀÌ¸§Àº?" << endl;
 		cin >> s_name;
 		for (int i = 0; i < size; i++) {
-			if (s_name.compare(p[i].getName()) == 0) {
-				cout << p[i].getName() << "ÀÇ ¸éÀûÀº" << p[i].getArea();
+			if (p[i].getName().compare(s_name)==0) {
+				cout << p[i].getArea();
+				break;
 			}
 		}
 	};
-
-
 	void searchByArea() {
-		int min_area = 0;
-		cout << endl << "ÃÖ¼Ò ¸éÀûÀ» Á¤¼ö·Î ÀÔ·ÂÇÏ¼¼¿ä"<< endl;
+		int min_area;
+		cout << "ìµœì†Œ ë©´ì ì„ ì •ìˆ˜ë¡œ ìž…ë ¥í•˜ì„¸ìš”.";
 		cin >> min_area;
-		cout << min_area << "º¸´Ù Å« ¿øÀ» °Ë»öÇÕ´Ï´Ù." << endl;
 		for (int i = 0; i < size; i++) {
-			if (p[i].getArea() > min_area) {
-				
-				cout << p[i].getName() << " ÀÇ ¸éÀûÀº " << p[i].getArea() << ", ";
+			if (min_area < p[i].getArea()) {
+				cout << p[i].getName();
 			}
 		}
-	}//»ç¿ëÀÚ·ÎºÎÅÍ ¸éÀûÀ» ÀÔ·Â¹Þ¾Æ ¸éÀûº¸´Ù Å« ¿øÀÇ ÀÌ¸§ Ãâ·Â
+	};
 };
 int main() {
-	int input_num=0;
-	cout << "¿øÀÇ °³¼ö´Â?";
-	cin >> input_num;
-	CircleManager circle(input_num);
-	circle.run();
-	circle.searchByName();
-	circle.searchByArea();
-	
-
-
-
+	int size;
+	cin >> size;
+	CircleManager Cm(size);
+	Cm.searchByName();
+	Cm.searchByArea();
 }
