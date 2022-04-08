@@ -7,7 +7,28 @@ using namespace std;
 class Player {
 	string name;
 	int ran[3];
-public:
+public:#include <iostream>
+
+using namespace std;
+int main() {
+	int a[5];
+	int num;
+	int max =0;
+	for (int i = 0; i < 5; i++) {
+		cin >> num;
+		a[i] = num;
+		if (max < a[i]) {
+			max = a[i];
+		}
+		
+	}
+
+	for (int i = 0; i < 5; i++) {
+		cout << a[i] << "  ";
+	}
+	cout << max;
+
+}
 	string setName(string name) { return this->name = name; }
 	string getName() { return name; };
 	bool ran_num() {
