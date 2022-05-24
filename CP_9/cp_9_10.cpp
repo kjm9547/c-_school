@@ -1,74 +1,122 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 class Shape {
-	string name;
-	int amount;
+	Shape* next;
+protected:
+	virtual void draw() = 0;
 public:
-	Shape(string name = "") { this->name = name; amount = 0; }
-	void setName(string name) { this->name = name; }
-	void up_amount() { amount++; }
-};
-class Line :public Shape {
-public:
-	Line(string name) : Shape(name) {};
+	Shape() { next = NULL; }
+	Shape* add(Shape* p) {
+		this->next = p;
+		return p;
+	}
+	void paint() {
+		draw();
+	}
+	Shape* getNext() { return next; }
 };
 class Circle : public Shape {
-public:
-	Circle(string name) : Shape(name) {};
+	virtual void draw() {
+		cout << "Circle" << endl;
+	}
+	
+};
+class Line : public Shape {
+	virtual void draw() {
+		cout << "Line" << endl;
+	}
 };
 class Rect : public Shape {
-public:
-	Rect(string name) : Shape(name) {};
+	virtual void draw() {
+		cout << "Rect" << endl;
+	}
 };
 
-class UI {//È­¸é Ãâ·Â ¹× Å° ÀÔ·Â
-	static int num;
+class UI {
 public:
-	static int input() { cin >> num; return num; }
-	static void show_menu(){
-		cout << "»ðÀÔ:1 »èÁ¦:2 ¸ðµÎº¸±â:3 Á¾·á:4 >> " << endl;
+	static int getMenu() {
+		int key;
+		cout << "ì‚½ìž…:1, ì‚­ì œ:2, ëª¨ë‘ë³´ê¸°:3, ì¢…ë£Œ:4 >>";
+		cin >> key;
+		return key;
 	}
-	static void show_detail() {
-		cout << "¼±:1 ¿ø:2 »ç°¢Çü:3 >>";
+	static int detail_shape() {
+		int key;
+		cout << "ì„ :1, ì›:2, ì‚¬ê°í˜•:3 >>";
+		cin >> key;
+		return key;
+	}
+	static int delete_index() {
+		int key;
+		cout << "ì‚­ì œí•˜ê³ ìž í•˜ëŠ” ë„í˜•ì˜ ì¸ë±ìŠ¤ >>";
+		cin >> key;
+		return key;
 	}
 };
-class GraphicEditor{
-	UI u;
+
+class GraphicEditor {
+	Shape* head;
+	Shape* tail;
 public:
-	Line l;
-	Circle c;
-	Rect r;
-	
-	void run() {
-		cout << "±×·¡ÇÈ ¿¡µðÅÍÀÔ´Ï´Ù.";
-		while (true)
+	GraphicEditor() { head = tail = NULL; }
+	void insertItem(int type) {
+		Shape *p = NULL;
+		switch (type)
 		{
-			u.show_menu();
-			int num = u.input();
-			switch (num)
-			{
+		case 1:
+			p = new Line();
+			break;
+		case 2:
+			p = new Circle();
+			break;
+		case 3:
+			p = new Rect();
+			break;
+		default:
+			break;
+		}
+		if (head == NULL) {
+			head = p;
+			tail = p;
+			return;
+		}
+		tail->add(p);
+		tail = tail->getNext();
+
+	}
+	void show() {
+		Shape* tmp = head;
+		int i = 1;
+		while (tmp != NULL) {
+			cout << i++ << ":";
+			tmp->paint();
+			tmp = tmp->getNext();
+		}
+	}
+	void run() {
+		cout << "ê·¸ëž˜í”½ ì—ë””í„°ìž…ë‹ˆë‹¤." << endl;
+		int menu, index, type;
+		while (true) {
+			menu = UI::getMenu();
+			switch (menu) {
 			case 1:
-				u.show_detail();
-				int detail = u.input();
-				switch (detail)
-				{
-				case 1:
-
-				default:
-					break;
-				}
-			case 2:
-				
-			case 3:
-
-			case 4:
-			default:
+				type = UI::detail_shape();
+				insertItem(type);
 				break;
+			case 3:
+				show();
+				break;
+			default:
+				return;
 			}
+		
+
 		}
 	}
 };
-
 int main() {
+	GraphicEditor g;
+	g.run();
 
+	return 0;
 }
