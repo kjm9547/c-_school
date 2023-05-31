@@ -1,1 +1,71 @@
+namespace WinFormsApp2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string[] banWord = new string[3];
+            banWord[0] = "안녕";
+            banWord[1] = "잘가";
+            banWord[2] = "잘지내";
+           string text = textBox1.Text;
+            int index = 0;
+            foreach (string word in banWord)
+            {
+                index = text.IndexOf(word);
+                if (index >= 0) break;
+            }
+            if (index == -1)
+            {
+
+                listBox1.Items.Add(text);
+            }
+            else
+            {
+                label1.Text = "금지어를 입력하셨네요?";
+            }
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string selectedText= listBox1.Text;
+            string slice;
+            if (checkBox1.Checked)
+            {
+                slice = selectedText.Substring(0, 2);
+            }
+            else if (checkBox2.Checked)
+            {
+                slice = selectedText.Substring(0, 3);
+            }
+            else
+            {
+                slice = selectedText.Substring(0, 4);
+            }
+            label1.Text = slice;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+    }
+}
