@@ -1,4 +1,14 @@
-namespace _2022_1번
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication2
 {
     public partial class Form1 : Form
     {
@@ -6,56 +16,49 @@ namespace _2022_1번
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            comboBox3.Items.Clear();
             
-            label2.Text = "";
-            string str = "";
-            int cnt = 0;
-            try
+            int index = comboBox2.SelectedIndex+1;
+            if ( index==1)
             {
-                int num = int.Parse(textBox1.Text);
-                if (num < 0 || num > 100)
+                for (int i = 0; i < 31; i++)
                 {
-                    label2.Text = "1~100 사이의 수를 입력해주세요";
-                }
-                else
-                {
-                    
-                    for(int i=1; i<=num; i++)
-                    {
-                        if(i%2 == 0)
-                        {
-                            str += i + ",";
-                            cnt++;
-                           
-                        }
-                        if (cnt % 10 == 0 && i!= 100)
-                        {
-                            str += "\n";
-                        }
-                    }
-                    if (cnt % 10 < 5 && cnt%10 != 0)
-                    {
-                        str = "한 줄에 5~10개가 오도록 다시 입력해주세요";
-                    }
-                    
-                     str = str.TrimEnd(',');
-                    label2.Text = str;
+                    comboBox3.Items.Add(i + 1);
                 }
             }
-            catch(Exception ex)
+            else if (index == 2)
             {
-                if (textBox1.Text == "") { label2.Text = "값을 입력해주세요"; }
+                for (int i = 0; i < 28; i++)
+                {
+                    comboBox3.Items.Add(i+1);
+                }
             }
             
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            label1.Text = textBox1.Text;
+            string radioValue;
+
+            if(radioButton1.Checked){
+                radioValue = radioButton1.Text;
+            }
+            else{
+                radioValue =  radioButton2.Text;
+            }
+            label2.Text = radioValue;
+
+            label3.Text= "생년월일 : " + comboBox1.s+ " 년" + comboBox2.SelectedItem + " 월" + comboBox3.SelectedItem +"일";
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
